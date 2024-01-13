@@ -1,8 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Appbar from './components/Appbar'
-import './App.css'
-import Dashboard from './components/Dashboard'
-import Landing from './components/Landing'
+import React, { Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Appbar from './components/Appbar';
+import './App.css';
+
+const Dashboard = React.lazy(() => import('./components/Dashboard'));
+const Landing = React.lazy(() => import('./components/Landing'));
 
 function App() {
   return (
@@ -10,13 +12,26 @@ function App() {
       <BrowserRouter>
         <Appbar />
         <Routes>
-
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/' element={<Landing />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Dashboard />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Landing />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
