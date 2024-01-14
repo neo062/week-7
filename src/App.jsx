@@ -23,7 +23,7 @@ function Count() {
 
 function CountRenderer() {
   const count = useRecoilValue(countAtom);
-  
+
   return <div>
     <b>
       {count}
@@ -34,7 +34,6 @@ function CountRenderer() {
 
 function EvenCountRenderer() {
   const isEven = useRecoilValue(evenSelector);
-
   return <div>
     {isEven ? "It is even" : null}
   </div>

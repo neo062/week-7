@@ -8,9 +8,9 @@ export const countAtom = atom({
 
 export const evenSelector = selector({
     key: "evenSelector",
-    get: ({get}) => {
+    get: ({ get }) => {
         const count = get(countAtom);
-        return count % 2;
+        return count % 2 == 0;
     }
 });
 
